@@ -1,7 +1,15 @@
 <template>
     <li class="memo-item">
         <strong>{{ memo.title }}</strong>
-        <p>{{ memo.content }}</p>
+        <p @dblclick="handleDblclick">
+            <template v-if="!isEditing">{{ memo.content }}</template>
+            <input v-else
+                   type="text"
+                   ref="content"
+                   :value="memo.content"
+                   @blur="handleBlur"
+                   @keydown.enter="updateMemo"/>
+        </p>
         <button type="button" @click="deleteMemo">
             <i class="fas fa-times"></i>
         </button>
@@ -17,10 +25,33 @@ export default {
             type: Object
         }
     },
+    data() {
+        return {
+            isEditing: false
+        }
+    },
     methods: {
         deleteMemo(){
             const id = this.memo.id;
             this.$emit('deleteMemo', id);
+        },
+        handleDblclick(){
+            this.isEditing = true;
+            this.$nextTick(() => {
+                this.$refs.content.focus();
+            });
+        },
+        updateMemo(e){
+            const id = this.memo.id;
+            const content = e.target.value.trim();
+            if (content.length <= 0){
+                return false;
+            }
+            this.$emit('updateMemo', {id, content});
+            this.isEditing = false;
+        },
+        handleBlur(){
+            this.isEditing = false;
         }
     }
 }
@@ -57,5 +88,11 @@ export default {
         font-size: 14px;
         line-height: 22px;
         color: #666;
+    }
+    .memo-item p input[type="text"]{
+        box-sizing: border-box;
+        width: 100%;
+        font-size: inherit;
+        border: 1px solid #999;
     }
 </style>
