@@ -36,12 +36,12 @@ export default {
         },
         addMemo() {
             const {title, content} = this;
-            const id = new Date().getTime();
+            // const id = new Date().getTime();
             const isEmpty = title.length <= 0 || content.length <= 0;
             if (isEmpty){
                 return false;
             }
-            this.$emit('addMemo', {id, title, content});
+            this.$emit('addMemo', {/*id, */title, content});
 
             this.resetFields();
         }
