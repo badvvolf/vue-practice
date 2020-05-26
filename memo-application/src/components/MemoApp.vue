@@ -43,8 +43,11 @@ export default {
         },
         deleteMemo(id){
             const targetIndex = this.memos.findIndex(v => v.id === id);
-            this.memos.splice(targetIndex, 1);
-            this.storeMemo();
+            memoAPICore.delete(`/${id}`)
+                .then(() => {
+                    this.memos.splice(targetIndex, 1);
+                });
+            // this.storeMemo();
         },
         updateMemo(payload){
             const {id, content} = payload;
