@@ -18,6 +18,8 @@ import axios from 'axios';
 import MemoForm from './MemoForm';
 import Memo from './Memo';
 
+import { mapActions, mapState } from 'vuex';
+
 const memoAPICore = axios.create({
     baseURL: 'http://localhost:8000/api/memos'
 });
@@ -61,19 +63,28 @@ export default {
                 });
             
             // this.storeMemo();
-        }
+        },
+        ...mapActions([
+            'fetchMemos'
+        ])
     },
-    data () {
-        return {
-            memos: [],
-        };
-    },
+    // data () {
+    //     return {
+    //         memos: [],
+    //     };
+    // },
     created () {
         // this.memos = localStorage.memos ? JSON.parse(localStorage.memos) : [];
-        memoAPICore.get('/')
-            .then(res => {
-                this.memos = res.data;
-            });
+        // memoAPICore.get('/')
+        //     .then(res => {
+        //         this.memos = res.data;
+        //     });
+        this.fetchMemos();
+    },
+    computed: {
+        ...mapState([
+            'memos'
+        ])
     },
 }
 </script>
