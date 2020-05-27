@@ -43,14 +43,14 @@ export default {
         //     const memosToString = JSON.stringify(this.memos);
         //     localStorage.setItem('memos', memosToString);
         // },
-        deleteMemo(id){
-            const targetIndex = this.memos.findIndex(v => v.id === id);
-            memoAPICore.delete(`/${id}`)
-                .then(() => {
-                    this.memos.splice(targetIndex, 1);
-                });
-            // this.storeMemo();
-        },
+        // deleteMemo(id){
+        //     const targetIndex = this.memos.findIndex(v => v.id === id);
+        //     memoAPICore.delete(`/${id}`)
+        //         .then(() => {
+        //             this.memos.splice(targetIndex, 1);
+        //         });
+        //     // this.storeMemo();
+        // },
         updateMemo(payload){
             const {id, content} = payload;
             const targetIndex = this.memos.findIndex(v => v.id === id);
@@ -66,7 +66,8 @@ export default {
         },
         ...mapActions([
             'fetchMemos',
-            'addMemo'
+            'addMemo',
+            'deleteMemo'
         ])
     },
     // data () {

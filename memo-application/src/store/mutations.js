@@ -1,6 +1,7 @@
 import { 
     FETCH_MEMOS,
-    ADD_MEMO 
+    ADD_MEMO,
+    DELETE_MEMO
 } from './mutations-types';
 
 export default {
@@ -10,4 +11,8 @@ export default {
     [ADD_MEMO] (state, payload){
         state.memos.push(payload);
     },
+    [DELETE_MEMO](state, id){
+        const targetIndex = state.memos.findIndex(v => v.id === id);
+        state.memos.splice(targetIndex, 1);
+    }
 };
