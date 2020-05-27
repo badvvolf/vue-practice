@@ -2,7 +2,8 @@ import axios from 'axios';
 import {
     FETCH_MEMOS,
     ADD_MEMO,
-    DELETE_MEMO
+    DELETE_MEMO,
+    EDIT_MEMO
 } from './mutations-types';
 
 const memoAPICore = axios.create({
@@ -30,8 +31,17 @@ export function deleteMemo({commit}, id){
         });
 }
 
+export function updateMemo({commit}, payload){
+    const {id, content } = payload;
+    memoAPICore.put(`/${id}`, {content})
+        .then(() => {
+            commit(EDIT_MEMO, payload);
+        });
+}
+
 export default {
     fetchMemos,
     addMemo,
-    deleteMemo
+    deleteMemo,
+    updateMemo
 }

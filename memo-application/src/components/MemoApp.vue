@@ -51,23 +51,24 @@ export default {
         //         });
         //     // this.storeMemo();
         // },
-        updateMemo(payload){
-            const {id, content} = payload;
-            const targetIndex = this.memos.findIndex(v => v.id === id);
-            const targetMemo = this.memos[targetIndex];
-            // this.memos.splice(targetIndex, 1, {...targetMemo, content});   
+        // updateMemo(payload){
+        //     const {id, content} = payload;
+        //     const targetIndex = this.memos.findIndex(v => v.id === id);
+        //     const targetMemo = this.memos[targetIndex];
+        //     // this.memos.splice(targetIndex, 1, {...targetMemo, content});   
 
-            memoAPICore.put(`/${id}`, {content})
-                .then(() => {
-                    this.memos.splice(targetIndex, 1, {...targetMemo, content});
-                });
+        //     memoAPICore.put(`/${id}`, {content})
+        //         .then(() => {
+        //             this.memos.splice(targetIndex, 1, {...targetMemo, content});
+        //         });
             
-            // this.storeMemo();
-        },
+        //     // this.storeMemo();
+        // },
         ...mapActions([
             'fetchMemos',
             'addMemo',
-            'deleteMemo'
+            'deleteMemo',
+            'updateMemo'
         ])
     },
     // data () {

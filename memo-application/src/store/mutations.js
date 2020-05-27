@@ -1,7 +1,8 @@
 import { 
     FETCH_MEMOS,
     ADD_MEMO,
-    DELETE_MEMO
+    DELETE_MEMO,
+    EDIT_MEMO
 } from './mutations-types';
 
 export default {
@@ -14,5 +15,11 @@ export default {
     [DELETE_MEMO](state, id){
         const targetIndex = state.memos.findIndex(v => v.id === id);
         state.memos.splice(targetIndex, 1);
+    },
+    [EDIT_MEMO](state, payload){
+        const { id, content } = payload;
+        const targetIndex = state.memos.findIndex(v=> v.id === id);
+        const targetMemo = state.memos[targetIndex];
+        state.memos.splice(targetIndex, 1, {...targetMemo, content});
     }
 };
