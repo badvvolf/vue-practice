@@ -31,14 +31,14 @@ export default {
       Memo
     },
     methods: {
-        addMemo(payload){
-            // this.memos.push(payload);
-            // this.storeMemo();
-            memoAPICore.post('/', payload)
-                .then(res => {
-                    this.memos.push(res.data)
-                });
-        },
+        // addMemo(payload){
+        //     // this.memos.push(payload);
+        //     // this.storeMemo();
+        //     memoAPICore.post('/', payload)
+        //         .then(res => {
+        //             this.memos.push(res.data)
+        //         });
+        // },
         // storeMemo(){
         //     const memosToString = JSON.stringify(this.memos);
         //     localStorage.setItem('memos', memosToString);
@@ -65,7 +65,8 @@ export default {
             // this.storeMemo();
         },
         ...mapActions([
-            'fetchMemos'
+            'fetchMemos',
+            'addMemo'
         ])
     },
     // data () {

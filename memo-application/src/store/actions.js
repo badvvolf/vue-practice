@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { FETCH_MEMOS } from './mutations-types';
+import {
+    FETCH_MEMOS,
+    ADD_MEMO,
+} from './mutations-types';
 
 const memoAPICore = axios.create({
     baseURL: 'http://localhost:8000/api/memos'
@@ -12,6 +15,14 @@ export function fetchMemos ({ commit }){
         });
 }
 
+export function addMemo ({ commit }, payload){
+    memoAPICore.post('/', payload)
+        .then(res => {
+            commit(ADD_MEMO, res.data);
+        });
+}
+
 export default {
-    fetchMemos
+    fetchMemos,
+    addMemo
 }
