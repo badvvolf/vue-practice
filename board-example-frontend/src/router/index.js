@@ -5,6 +5,7 @@ import PostListPage from '@/pages/PostListPage'
 import PostViewPage from '@/pages/PostViewPage'
 import Signup from '@/pages/Signup'
 import Signin from '@/pages/Signin'
+import PostCreatePage from '@/pages/PostCreatePage'
 
 import AppHeader from '@/components/AppHeader'
 
@@ -20,6 +21,14 @@ export default new Router({
       components: {
         header: AppHeader,
         default: PostListPage
+      }
+    },
+    {
+      path: '/post/create',
+      name: 'PostCreatePage',
+      components: {
+        header: AppHeader,
+        default: PostCreatePage
       }
     },
     {
@@ -48,6 +57,6 @@ export default new Router({
         header: AppHeader,
         default: Signin
       }
-    }
+    },
   ]
 })
