@@ -8,6 +8,7 @@ import PostViewPage from '@/pages/PostViewPage'
 import Signup from '@/pages/Signup'
 import Signin from '@/pages/Signin'
 import PostCreatePage from '@/pages/PostCreatePage'
+import PostEditPage from '@/pages/PostEditPage'
 
 import AppHeader from '@/components/AppHeader'
 
@@ -39,6 +40,17 @@ export default new Router({
           next({name:'Signin'})
         }
         next()
+      }
+    },
+    {
+      path: '/post/:postId/edit',
+      name: 'PostEditPage',
+      components:{
+        header: AppHeader,
+        default: PostEditPage
+      },
+      props: {
+        default: true
       }
     },
     {
