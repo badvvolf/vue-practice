@@ -3,7 +3,9 @@ import {
     FETCH_POST_LIST, 
     FETCH_POST, 
     SET_ACCESS_TOKEN,
-    SET_MY_INFO
+    SET_MY_INFO,
+    DESTROY_MY_INFO,
+    DESTROY_ACCESS_TOKEN
 } from './mutations-types'
 
 export default {
@@ -37,5 +39,9 @@ export default {
             .then(res => {
                 commit(SET_MY_INFO, res.data)
             })
+    },
+    signout({commit}){
+        commit(DESTROY_MY_INFO)
+        commit(DESTROY_ACCESS_TOKEN)
     }
 }
