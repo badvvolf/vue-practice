@@ -8,6 +8,7 @@ import {
     DESTROY_ACCESS_TOKEN,
     UPDATE_COMMENT,
     EDIT_COMMENT,
+    DELETE_COMMENT
 } from './mutations-types'
 
 export default {
@@ -60,5 +61,11 @@ export default {
                 commit(EDIT_COMMENT, res.data)
             })
     },
+    deleteComment({commit, state}, commentId){
+        const postId = state.post.id
+        return api.delete(`/posts/${postId}/comments/${commentId}`)
+            .then(res => {
+                commit(DELETE_COMMENT, commentId)
+            })
     }
 }
