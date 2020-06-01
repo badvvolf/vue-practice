@@ -4,7 +4,8 @@ import {
     SET_ACCESS_TOKEN,
     SET_MY_INFO,
     DESTROY_ACCESS_TOKEN,
-    DESTROY_MY_INFO
+    DESTROY_MY_INFO,
+    UPDATE_COMMENT
 } from './mutations-types'
 
 import api from '@/api'
@@ -35,5 +36,8 @@ export default{
     },
     [DESTROY_MY_INFO](state){
         state.me = null
+    },
+    [UPDATE_COMMENT](state, payload){
+        state.post.comments.push(payload)
     }
 }

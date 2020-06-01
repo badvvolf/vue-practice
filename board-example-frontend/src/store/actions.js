@@ -5,7 +5,8 @@ import {
     SET_ACCESS_TOKEN,
     SET_MY_INFO,
     DESTROY_MY_INFO,
-    DESTROY_ACCESS_TOKEN
+    DESTROY_ACCESS_TOKEN,
+    UPDATE_COMMENT
 } from './mutations-types'
 
 export default {
@@ -43,5 +44,12 @@ export default {
     signout({commit}){
         commit(DESTROY_MY_INFO)
         commit(DESTROY_ACCESS_TOKEN)
+    },
+    createComment({commit, state}, comment){
+        const postId = state.post.id
+        return api.post(`/posts/${postId}/comments`, {contents: comment})
+            .then(res => {
+                commit(UPDATE_COMMENT, res.data)
+            })
     }
 }
