@@ -5,19 +5,23 @@
         <router-link :to="{name: 'PostEditPage', params: {postId}}">수정</router-link>
         <button @click="onDelete">삭제</button>
         <router-link :to="{ name: 'PostListPage' }">목록</router-link>
-        
+        <comment-list v-if="post" :comments="post.comments"/>
     </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
 import PostView from '@/components/PostView'
+import CommentList from '@/components/CommentList'
 
 import api from '@/api'
 
 export default {
     name: 'PostViewPage',
-    components: { PostView },
+    components: { 
+        PostView,
+        CommentList
+    },
     methods: {
         ...mapActions([
             'fetchPost'
