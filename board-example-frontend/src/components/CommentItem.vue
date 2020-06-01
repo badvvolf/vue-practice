@@ -21,7 +21,7 @@ export default {
             validator(comment){
                 const isValidCommentId = typeof comment.id === 'number'
                 const isValidContents = comment.contents && comment.contents.length
-                const isValidUser = !!comment.isValidUser
+                const isValidUser = !!comment.user
                 return isValidCommentId && isValidContents && isValidUser
             }
         }
