@@ -5,7 +5,8 @@ import {
     SET_MY_INFO,
     DESTROY_ACCESS_TOKEN,
     DESTROY_MY_INFO,
-    UPDATE_COMMENT
+    UPDATE_COMMENT,
+    EDIT_COMMENT,
 } from './mutations-types'
 
 import api from '@/api'
@@ -39,5 +40,12 @@ export default{
     },
     [UPDATE_COMMENT](state, payload){
         state.post.comments.push(payload)
+    },
+    [EDIT_COMMENT](state, payload){
+        const {id : commentId, contents, updatedAt} = payload
+        const targetComment = state.post.comments.find(comment => comment.id === commentId)
+        targetComment.contents = contents
+        targetComment.updatedAt = updatedAt
+    },
     }
 }
